@@ -5,9 +5,6 @@
 * There are three modes: Uppercase, lowecase and punctuation.
 */
 
-
-
-
 #include <iostream>
 using std::cin;
 using std::cout;
@@ -25,7 +22,7 @@ do {
 	cout << "Numbered entered: " << number << "\n";
 } while (digitChar != 10);
 // Convert a series of characters representing a number to an integer
-// Will have to do enum modeType {UPPERCASE, LOWERCASE, PUNCTUATION}
+
 // Convert an integer 1-26 into an uppercase letter.
 
 // Convert an integer 1-26 into a lowercase letter
