@@ -10,23 +10,60 @@ using std::cin;
 using std::cout;
 
 // Read character by character until we reach an end of line
+char outputCharacter;
+enum modeType { UPPERCASE, LOWERCASE, PUNCUATION };
+modeType mode = UPPERCASE;
 char digitChar;
+
 do {
-	digitChar = cin.get();
-	int number = (digitChar - '0');
-	digitChar = cin.get();
-	while ((digitChar != 10) && (digitChar != ',')) {
-		number = number * 10 + (digitChar - '0');
-		digitChar = cin.get();
-	}
-	cout << "Numbered entered: " << number << "\n";
+    digitChar = cin.get();
+    int number = (digitChar - '0');
+    digitChar = cin.get();
+
+    while ((digitChar != 10) && (digitChar != ',')) {
+        number = number * 10 + (digitChar - '0');
+        digitChar = cin.get();
+    }
+
+    switch (mode) {
+        case UPPERCASE:
+            number = number % 27;
+            outputCharacter = number + 'A' - 1;
+            if (number == 0) {
+                mode = LOWERCASE;
+                continue;
+            }
+            break;
+        case LOWERCASE:
+            number = number % 27;
+            outputCharacter = number + 'a' - 1;
+            if (number == 0) {
+                mode = PUNCUATION;
+                continue;
+            }
+            break;
+        case PUNCUATION:
+            number = number % 9;
+            switch (number) {
+                case 1: outputCharacter = '!'; break;
+                case 2: outputCharacter = '?'; break;
+                case 3: outputCharacter = ','; break;
+                case 4: outputCharacter = '.'; break;
+                case 5: outputCharacter = ' '; break;
+                case 6: outputCharacter = ';'; break;
+                case 7: outputCharacter = '"'; break;
+                case 8: outputCharacter = '\''; break;
+            }
+            if (number == 0) {
+                mode = UPPERCASE;
+                continue;
+            }
+            break;
+    }
+
+    cout << outputCharacter;
 } while (digitChar != 10);
-// Convert a series of characters representing a number to an integer
 
-// Convert an integer 1-26 into an uppercase letter.
+cout << "\n";
 
-// Convert an integer 1-26 into a lowercase letter
-
-// Convert an integer 1-8 into a punctuation sysmbol
-
-// Track a decoding mode.
+return 0;
